@@ -277,14 +277,16 @@ class Cli {
         );
         
         // TODO: push the motorbike to the vehicles array
-        
-        
+        this.vehicles.push(motorbike);
         // TODO: set the selectedVehicleVin to the vin of the motorbike
-       
-        
+        this.selectedVehicleVin = motorbike.vin;
         // TODO: perform actions on the motorbike
+        this.performActions();
       });
+
   }
+        
+      
 
   // method to find a vehicle to tow
   // TODO: add a parameter to accept a truck object
@@ -305,11 +307,27 @@ class Cli {
       ])
       .then((answers) => {
         // TODO: check if the selected vehicle is the truck
+        const vehicleToTow = answers.vehicleToTow;
+        if (vehicleToTow) {
+       
+        
         // TODO: if it is, log that the truck cannot tow itself then perform actions on the truck to allow the user to select another action
+        if (vehicleToTow instanceof Truck) {
+          console.log('the truck cannot tow itself');
+       
+        
         // TODO: if it is not, tow the selected vehicle then perform actions on the truck to allow the user to select another action
-      });
-  }
+      } else {
+        truck.tow(vehicleToTow);
+      }
+      this.performActions();
+    }
 
+   });
+}
+
+      
+ 
   // method to perform actions on a vehicle
   performActions(): void {
     inquirer
