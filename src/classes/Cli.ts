@@ -417,15 +417,28 @@ class Cli {
             if (this.vehicles[i] instanceof Truck)
                {
                 this.findVehicleToTow(this.vehicles[i]as Truck);return;
-               } else { console.log('This vehicle cannot tow another vehicle');
-  
+               } else { console.log('This vehicle cannot tow');
+              }
             }
           }
       
         }
         
         // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
+        else if (answers.action === 'Perform a wheelie') {
+          for (let i = 0; i < this.vehicles.length; i++) {
+            if (this.vehicles[i].vin === this.selectedVehicleVin) {
+              if (this.vehicles[i] instanceof Motorbike) {
+                (this.vehicles[i]as Motorbike).wheelie();
+              } else {console.log('This vehicle cannot perform a wheelie');
+              }
+            }
+          }
+        }
         else if (answers.action === 'Select or create another vehicle') {
+        
+        
+    
           // start the cli to return to the initial prompt if the user wants to select or create another vehicle
           this.startCli();
           return;
