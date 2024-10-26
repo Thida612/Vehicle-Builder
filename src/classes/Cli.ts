@@ -256,8 +256,32 @@ class Cli {
       ])
       .then((answers) => {
         // TODO: Use the answers object to pass the required properties to the Motorbike constructor
+        const frontWheel = new Wheel(
+          parseFloat(answers.frontWheelDiameter),
+          answers.frontWheelBrand
+        );
+        const rearWheel = new Wheel(
+          parseFloat(answers.rearWheelDiameter),
+          answers.rearWheelBrand
+        );
+        const motorbike = new Motorbike(
+          Cli.generateVin(),
+          answers.color,
+          answers.make,
+          answers.model,
+          parseInt(answers.year),
+          parseInt(answers.weight),
+          parseInt(answers.topSpeed),
+          frontWheel,
+          rearWheel
+        );
+        
         // TODO: push the motorbike to the vehicles array
+        
+        
         // TODO: set the selectedVehicleVin to the vin of the motorbike
+       
+        
         // TODO: perform actions on the motorbike
       });
   }
